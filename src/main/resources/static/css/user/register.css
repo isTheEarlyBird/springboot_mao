@@ -1,0 +1,40 @@
+@charset "UTF-8";
+body {
+    background-color: #fff;
+}
+
+/*注册内容*/
+.main {
+    width: 310px;
+    margin: 0 auto;
+    font-size: 18px;
+    line-height: 40px;
+    margin-top: 60px;
+    margin-bottom: 100px;
+}
+.main i {
+    display: inline-block;
+    width: 100px;
+}
+.main input {
+    width: 200px;
+    height: 25px;
+}
+.main button {
+    width: 170px;
+    height: 40px;
+    background-color: #ff0036;
+    border: none;
+    margin-top: 40px;
+    margin-left: 100px;
+    cursor: pointer;
+}
+
+.main input[type="radio"] {
+	width: 13px;
+	height: 13px;
+}
+/* 表单元素错误样式 */
+.error {
+	color: red;
+}

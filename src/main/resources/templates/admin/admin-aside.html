@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<aside class="main-sidebar" th:fragment="aside">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img th:src="@{/images/admin/user2-160x160.jpg}" src="/images/admin/user2-160x160.jpg" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p><shiro:principal property="userName"/></p>
+                <a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+            </div>
+        </div>
+
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">菜单</li>
+
+            <li id="admin-index"><a th:href="@{/admin}" href="/admin"><i class="fa fa-dashboard"></i> <span>首页</span></a></li>
+
+            <!-- 菜单 -->
+            <!-- ADMIN -->
+            <shiro:hasRole name="ADMIN">
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i> <span>用户管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li>
+                        <a th:href="@{/admin/findAllAdminUser.do}" href="/admin/findAllAdminUser.do">
+                            <i class="fa fa-circle-o"></i> 用户页面
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/admin/findAllRole.do}" href="/admin/findAllRole.do">
+                            <i class="fa fa-circle-o"></i> 角色
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/admin/findAllPermission.do}" href="/admin/findAllPermission.do">
+                            <i class="fa fa-circle-o"></i> 权限
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            </shiro:hasRole>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i> <span>商品管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li>
+                        <a th:href="@{/admin/findCategory.do}" href="/admin/findCategory.do">
+                            <i class="fa fa-circle-o"></i> 分类
+                        </a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/admin/findProduct.do}" href="/admin/findProduct.do">
+                            <i class="fa fa-circle-o"></i> 商品页
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-pie-chart"></i> <span>订单管理</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                    <li id="charts-chartjs">
+                        <a th:href="@{'/admin/findUnprocessedOrder.do?page=1&limit=5&deliveryStatus=0'}" href="/admin/findUnprocessedOrder.do?page=1&limit=5&deliveryStatus=0">
+                            <i class="fa fa-circle-o"></i> 未处理的订单
+                        </a>
+                    </li>
+
+                    <li id="charts-morris">
+                        <a th:href="@{'/admin/findUnprocessedOrder.do?page=1&limit=5&deliveryStatus=1'}" href="/admin/findUnprocessedOrder.do?page=1&limit=5&deliveryStatus=1">
+                            <i class="fa fa-circle-o"></i> 已处理的订单
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

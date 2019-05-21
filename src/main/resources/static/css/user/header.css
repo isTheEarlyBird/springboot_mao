@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/* 头部 nav */
+header#top {
+    margin-bottom: 0;
+}
+header .navbar-nav li {
+    margin: 5px;
+}
+header .navbar-nav a {
+    padding: 5px;
+}
+header .navbar-nav .navbar-text {
+    margin-top: 10px;
+}
+/* 手机版二维码 */
+header .container .phone-li {
+    position: relative;
+}
+header .container .phone-img {
+    position: absolute;
+    width: 181px;
+    left: -50px;
+    z-index: 5;
+}
+/*logo*/
+header .header-top {
+    position: relative;
+}
+header .header-top .logo {
+    position: absolute;
+    left: -50px;
+    top: 0;
+}
+/*搜索*/
+header .header-top .search {
+    width: 632px;
+    margin: 60px auto;
+    margin-right: 200px;
+}
+header .search input {
+    float: left;
+    width: calc(500px - 14px);
+    height: calc(40px - 14px);
+    font-size: 16px;
+    border: 2px solid #FF0036;
+    padding: 5px;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+header .search button {
+    float: right;
+    width: 132px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #ff0036;
+    color: #fff;
+    font-size: 20px;
+    border: none;
+}
+.search .hotWord {
+    float: left;
+    font-size: 14px;
+}
+.search .hotWord li {
+    float: left;
+    padding: 0 15px;
+    border-right: 1px solid #ccc;
+    margin-top: 5px;
+}
+.search .hotWord li:first-child {
+    padding-left: 0;
+}
+.search .hotWord li:last-child {
+    padding-right: 0;
+    border-right: none;
+}
+
+.hotWord li a:hover {
+    text-decoration: none;
+}

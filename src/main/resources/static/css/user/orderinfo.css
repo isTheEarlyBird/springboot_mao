@@ -1,0 +1,50 @@
+@charset "UTF-8";
+
+/* 商品展示表单 */
+.show-product table a {
+	color: #000;
+}
+.show-product table img {
+	width: 70px;
+	height: 70px;
+}
+
+.show-product table thead th {
+	font-size: 18px;
+	text-align: center;
+}
+.show-product table tbody {
+	font-size: 16px;
+	text-align: center;
+}
+.show-product .table td {
+	line-height: 87px;
+}
+.show-product .cart p {
+	font-size: 18px;
+	font-weight:700;
+}
+.show-product tbody .del a {
+	display: inline-block;
+	margin-top: 25px;
+	color: #fff;
+}
+
+.show-product .total {
+	font-size: 20px;
+	font-weight:700;
+	color: red;
+}
+/* 表单元素错误样式 */
+.error {
+	color: red;
+	font-size: 18px;
+}
+/* 没有商品 */
+.cart .empty {
+	height: 300px;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	line-height: 300px;
+}

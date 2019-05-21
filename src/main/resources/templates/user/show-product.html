@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/user/common.css}" href="${pageContext.request.contextPath}/css/user/common.css">
+    <link rel="stylesheet" th:href="@{/css/user/header.css}" href="${pageContext.request.contextPath}/css/user/header.css">
+    <link rel="stylesheet" th:href="@{/css/user/footer.css}" href="${pageContext.request.contextPath}/css/user/footer.css">
+    <link rel="stylesheet" th:href="@{/css/user/product.css}" href="/css/user/product.css">
+</head>
+<body>
+<!-- 头部 -->
+<div th:replace="/user/header::header"></div>
+<!-- 头部结束 -->
+<!-- 主体 -->
+<div>
+    <!--分类-->
+    <div class="category">
+        <div class="cateContent">
+            <div class="allCate f_l">所有产品分类</div>
+            <div class="cateRight f_l">
+                <ul>
+                    <li><a th:href="@{/index/init.do}" href="/index/init.do">首页</a></li>
+                    <li><a href="javascript:;">量贩装</a></li>
+                    <li><a href="javascript:;">生鲜区</a></li>
+                    <li><a href="javascript:;">企业采购</a></li>
+                    <li><a href="javascript:;">大家电</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- 产品信息 -->
+    <div class="content">
+        <!--详述-->
+        <div class="detail clearfix">
+            <!--商品图片-->
+            <div class="detail-left f_l">
+                <div class="show">
+                    <!--小图-->
+                    <div class="smallImg">
+                        <img th:src="@{${product.imgs[0].url}}" src="${product.imgs[0].url}"> <span></span>
+                        <!--遮罩层-->
+                    </div>
+                    <!--大图-->
+                    <div class="bigImg">
+                        <img th:src="@{${product.imgs[0].url}}" src="${product.imgs[0].url}">
+                    </div>
+                    <!--选择图片-->
+                    <div class="select clearfix">
+                        <ul>
+                            <li class="now" th:each="img:${product.imgs}">
+                                <a href="javascript:void(0);">
+                                    <img th:src="@{${img.url}}" src="${img.url}">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="collection">
+                        <p>
+                            <a href="javascipt:;"><span class="icon-share"></span>分享</a> <a
+                                href="javascipt:;"><span class="icon-star"></span>收藏商品</a> <span>(5683人气)</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--商品详情-->
+            <div class="detail-middle f_l">
+                <div class="goods-title" th:text="${product.name}"></div>
+                <div class="goods-price">价格<i>&yen;</i><span th:text="${product.price}"></span></div>
+                <div class="transport">
+                    <i>运费</i> <a href="javascript:;" class="province">广东<i
+                        class="icon-location"></i></a> <a href="javascript:;" class="city">广州<i
+                        class="icon-location"></i></a> <span>满88(20Kg内)包邮</span> <a href="#">配送规则</a>
+                </div>
+                <div class="panel">
+                    <a href="#">累计评价<span>554</span></a> <a href="#">送天猫积分<i>6</i></a>
+                </div>
+                <div class="num">
+                    数量 <input name="num" type="text" value="1" th:max="${product.stock}">
+                        <span class="amount-btn">
+                            <span class="glyphicon glyphicon-chevron-up"></span>
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </span> 件
+                    <span class="stock">库存:<span th:text="${product.stock}"></span></span>
+                </div>
+                <div class="addCart">
+                    <a href="javascript:void(0);" onclick="addCart()">加入购物车</a>
+                </div>
+                <p class="deliver">
+                    <span>配送范围</span> <span>送货范围仅限汕头、云浮、汕尾、揭阳、中山、珠海、东莞、梅州、茂名、清远、广州、湛江、惠州、深圳、佛山、阳江、河源、肇庆、韶关、江门、潮州地区(生鲜类别仅限部分地区)</span>
+                </p>
+            </div>
+            <div class="detail-right"></div>
+        </div>
+    </div>
+</div>
+<!-- 主体 结束 -->
+<!-- 底部 -->
+<div th:replace="/user/footer::footer"></div>
+<!-- 底部 结束 -->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.js}" src="/plugins/jQuery/jquery-1.12.4-min.js"></script>
+<script th:src="@{/js/common.js}" src="/js/common.js"></script>
+<script th:src="@{/js/show-product.js}" src="/js/show-product.js"></script>
+
+<script>
+    //添加到购物车
+    function addCart(){
+        if(confirm("是否要添加到购物车")){
+            var num = $(".num input").val();
+            location.href = "[[@{/}]]user/permission/cart/insertCart.do?productId=[[${product.id}]]&num="+num;
+        }
+    }
+</script>
+</body>
+</html>

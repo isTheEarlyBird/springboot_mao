@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+    <defaultCache
+            maxEntriesLocalHeap="1000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            memoryStoreEvictionPolicy="LRU"
+    />
+    <!-- 登录记录缓存 锁定1个小时 -->
+    <cache name="passwordRetryCache" eternal="false"
+           maxEntriesLocalHeap="1000"
+           timeToIdleSeconds="3600" timeToLiveSeconds="0" overflowToDisk="false"
+           statistics="true">
+    </cache>
+</ehcache>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订单提交</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" th:href="@{/css/user/common.css}" href="${pageContext.request.contextPath}/css/user/common.css">
+	<link rel="stylesheet" th:href="@{/css/user/header.css}" href="${pageContext.request.contextPath}/css/user/header.css">
+	<link rel="stylesheet" th:href="@{/css/user/footer.css}" href="${pageContext.request.contextPath}/css/user/footer.css">
+	<link rel="stylesheet" th:href="@{/css/user/orderinfo.css}" href="/css/user/orderinfo.css">
+</head>
+<body>
+<!-- 头部 -->
+<div th:replace="/user/header::header"></div>
+<!-- 头部 结束 -->
+<!-- 订单详情 -->
+<div class="container">
+	<form class="show-product" th:action="@{/user/permission/order/insertOrder.do}" action="/user/permission/order/insertOrder.do" method="post">
+		<input type="hidden"  name="oid" value="oid"/>
+		<div class="cart">
+			<p>订单详情</p>
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th width="14%">图片</th>
+					<th width="56%">商品名称</th>
+					<th width="16%">价格</th>
+					<th width="14%">数量</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cartItem:${session.cart.cartItems}">
+						<td class="img"><img th:src="@{${cartItem.product.imgs[0].url}}" src="${cartItem.product.imgs[0].url}"></td>
+						<td class="title"><a th:href="@{'/product/findById.do?productId='+${cartItem.product.id}}" th:text="${cartItem.product.name}" href="/product/findById.do?productId=${cartItem.product.id}" target="_self"></a></td>
+						<td class="money">&yen;<span th:text="${cartItem.product.price}"></span></td>
+						<td class="num" th:text="${cartItem.num}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="userinfo">
+			<div class="form-group">
+				<label for="recipient">联系人</label>
+				<input type="text" class="form-control" id="recipient" placeholder="联系人" name="recipient">
+			</div>
+			<div class="form-group">
+				<label for="phone">联系电话</label>
+				<input type="text" class="form-control" id="phone" placeholder="联系电话" name="phone">
+			</div>
+			<div class="form-group">
+				<label for="address">联系地址</label>
+				<input type="text" class="form-control" id="address" placeholder="联系地址" name="address">
+			</div>
+			<div class="form-group">
+				<label for="essage">留言</label>
+				<textarea id="essage" placeholder="留言" name="userMessage" cols="30" rows="10"></textarea>
+			</div>
+		</div>
+		<div class="f_r">
+			<p class="total">总金额：&yen;<i th:text="${session.cart.total}"></i></p>
+			<input class="btn btn-danger" type="submit" value="确认订单" />
+		</div>
+	</form>
+</div>
+<!-- 订单详情 结束 -->
+<!-- 底部 -->
+<div th:replace="/user/footer::footer"></div>
+<!-- 底部 结束 -->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.js}" src="/plugins/jQuery/jquery-1.12.4-min.js"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.js}" src="/plugins/jQuery/js/bootstrap.js"></script>
+<script th:src="@{/js/jquery.validate.min.js}" src="/plugins/jQuery/jquery.validate.min.js"></script>
+<script th:src="@{/js/common.js}" src="/js/common.js"></script>
+<script th:src="@{/js/orderinfo.js}" src="/js/orderinfo.js"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+package com.my.mao.domain;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+@Data
+public class User implements Serializable {
+
+    private String id;
+    private String name;
+    private String password;
+    private String createTime;
+
+}

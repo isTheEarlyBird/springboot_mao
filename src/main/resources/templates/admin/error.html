@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>unAuthorization</title>
+</head>
+<body>
+    <th:block th:if="${#strings.isEmpty(error)}">
+        <p>403</p>
+    </th:block>
+    <th:block th:if="${not #strings.isEmpty(error)}">
+        <p th:text="${error}"></p>
+        <a th:href="@{${path}}">返回</a>
+    </th:block>
+</body>
+</html>

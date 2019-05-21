@@ -1,0 +1,83 @@
+/*底部*/
+footer {
+    margin-top: 40px;
+    background-color: #fff;
+}
+footer .mao_ensure {
+    width: 1190px;
+    height: 100px;
+    margin: 25px auto;
+    background: url(../../images/ensure.jpg) no-repeat;
+}
+footer .mao_ensure a {
+    float: left;
+    width: 297px;
+    height: 100px;
+}
+footer .mao_desc {
+    width: 1190px;
+    height: 190px;
+    margin: 0 auto;
+    padding-top: 22px;
+    border-top: 1px solid #ccc;
+}
+footer .mao_desc dl {
+    float: left;
+    margin-left: 52px;
+    width: 186px;
+}
+.mao_desc dl dt {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 30px;
+    color: #646464;
+}
+.mao_desc dl dd {
+    width: 100%;
+}
+.mao_desc dd a {
+    display: block;
+    width: 100px;
+    text-decoration: none;
+    line-height: 20px;
+}
+footer .mao_copyright {
+    background-color: #000;
+}
+footer .copyright_contain {
+    width: 1190px;
+    margin: 0 auto;
+    color: #999;
+    overflow: hidden;
+}
+.copyright_contain .footer_info {
+    margin-top: 10px;
+}
+
+.footer_info a, .footer-otherlink a {
+    color: #fff;
+}
+
+.footer_info a {
+    margin-right: 5px;
+}
+.footer-otherlink {
+    color: #fff;
+    margin-top: 20px;
+}
+.footer_copyright a, .footer_copyright span {
+    margin-right: 65px;
+}
+.footer_copyright b, .footer_copyright i {
+    display: block;
+    margin-top: 5px;
+}
+.footer_copyright i {
+    color: #686868;
+}
+.footer_copyright p a {
+    margin-right: 10px;
+}
+.empty-div {
+    height: 20px;
+}

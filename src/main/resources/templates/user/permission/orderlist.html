@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>订单列表</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/user/common.css}" href="${pageContext.request.contextPath}/css/user/common.css">
+    <link rel="stylesheet" th:href="@{/css/user/header.css}" href="${pageContext.request.contextPath}/css/user/header.css">
+    <link rel="stylesheet" th:href="@{/css/user/footer.css}" href="${pageContext.request.contextPath}/css/user/footer.css">
+    <link rel="stylesheet" th:href="@{/css/user/product-common.css}" href="${pageContext.request.contextPath}/css/user/product-common.css">
+</head>
+<body>
+<!-- 头部 -->
+<div th:replace="/user/header::header"></div>
+<!-- 头部结束 -->
+<!-- 订单主体 -->
+<div class="cart-main">
+    <div class="container">
+        <p>订单详情</p>
+        <!--判断订单列表是否为空-->
+        <div class="cart" th:if="${#maps.isEmpty(map)}">
+            <div class="empty"><p>没有订单，<a th:href="@{/user/permission/cart}" href="/user/permission/cart.html">去购物车下单吧</a> </p></div>
+        </div>
+
+        <!-- 遍历 -->
+        <div class="cart clearfix" th:if="${not #maps.isEmpty(map)}" th:each="mapEntry:${map}">
+                <div class="clear">
+                    <div th:if="${mapEntry.key.payStatus == 0}">
+                        <p class="f_l">
+                            订单号<span th:text="${mapEntry.key.id}"></span>
+                            <span>未付款</span>
+                        </p>
+                        <a class="btn btn-danger f_r" th:href="@{'/user/permission/pay?orderId='+${mapEntry.key.id}}" href="/user/permission/pay.jsp?orderId=${mapEntry.key.id}">去付款</a>
+                    </div>
+                    <div th:if="${mapEntry.key.payStatus == 1}">
+                        <p class="f_l">订单号<span th:text="${mapEntry.key.id}"></span>
+                            <span>已付款</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="show-product">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th width="10%">图片</th>
+                            <th width="55%">商品名称</th>
+                            <th width="10%">价格</th>
+                            <th width="10%">数量</th>
+                            <th width="15%">总计</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <!-- 遍历商品 -->
+                            <tr th:each="orderProduct:${mapEntry.value}">
+                                <td class="img"><img th:src="@{${orderProduct.product.imgs[0].url}}" src="${orderProduct.product.imgs[0].url}"></td>
+                                <td class="title"><a th:href="@{'/product/findProductById.do?pid='+${orderProduct.product.id}}" th:text="${orderProduct.product.name}" href="/product/findById.do?productId=${orderProduct.product.id}" target="_self"></a></td>
+                                <td class="money">&yen;<span th:text="${orderProduct.product.price}"></span></td>
+                                <td class="num" th:text="${orderProduct.num}"></td>
+                                <td class="subtotal">&yen;<span th:text="${orderProduct.product.price * orderProduct.num}"></span> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="f_r">
+                        <p>收货人：<span th:text="${mapEntry.key.recipient}"></span> </p>
+                        <p>收货地址：<span th:text="${mapEntry.key.address}"></span> </p>
+                        <p>下单时间：<span th:text="${mapEntry.key.createDate}"></span> </p>
+                        <p class="total">总金额：&yen;<i th:text="${mapEntry.key.total}"></i></p>
+                    </div>
+                </div>
+                <div class="empty-div"></div>
+            </div>
+    </div>
+</div>
+<!-- 订单主体结束 -->
+<!-- 底部 -->
+<div th:replace="/user/footer::footer"></div>
+<!-- 底部 结束 -->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.js}" src="/plugins/jQuery/jquery-1.12.4-min.js"></script>
+<script th:src="@{/js/common.js}" src="/js/common.js"></script>
+</body>
+</html>

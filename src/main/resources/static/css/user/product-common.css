@@ -1,0 +1,81 @@
+@charset "UTF-8";
+.cart {
+	width: 1240px;
+	margin: auto;
+}
+.container > p, form .f_r p {
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
+.cart .clear {
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+.cart .clear p {
+	font-size: 16px;
+	font-weight: 700;
+}
+.cart .clear a {
+	font-size: 16px;
+    font-weight: bold;
+    color: #5cbfef;
+}
+.cart .clear a:hover {
+	color: #5aa0c2;
+}
+.cart .clear .btn {
+	color: #fff;
+}
+table a {
+	color: #000;
+}
+table img {
+	width: 70px;
+	height: 70px;
+}
+
+table thead th {
+	font-size: 18px;
+	text-align: center;
+}
+table tbody {
+	font-size: 16px;
+	text-align: center;
+}
+.container .table td {
+	line-height: 87px;
+}
+tbody .del a {
+	display: inline-block;
+	margin-top: 25px;
+}
+
+.show-product .f_r p {
+	font-size: 20px;
+	font-weight:700;
+}
+
+.total {
+	font-size: 20px;
+	font-weight:700;
+	color: red;
+}
+
+button {
+	width: 100px;
+}
+
+.empty-div {
+	height: 30px;
+}
+
+/* 没有商品 */
+.cart .empty {
+	height: 300px;
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	line-height: 300px;
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.css}" href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/user/common.css}" href="${pageContext.request.contextPath}/css/user/common.css">
+    <link rel="stylesheet" th:href="@{/css/user/header.css}" href="${pageContext.request.contextPath}/css/user/header.css">
+    <link rel="stylesheet" th:href="@{/css/user/footer.css}" href="${pageContext.request.contextPath}/css/user/footer.css">
+    <link rel="stylesheet" th:href="@{/css/user/product-common.css}" href="${pageContext.request.contextPath}/css/user/product-common.css">
+</head>
+<body>
+<!-- 头部 -->
+<div th:replace="/user/header::header"></div>
+<!-- 头部结束 -->
+<!-- 订单主体 -->
+<div class="cart-main">
+    <div class="container">
+        <p>购物车详情</p>
+        <!--判断购物车列表是否为空-->
+        <div class="cart" th:if="${session.cart == null}">
+            <div class="empty"><p>没有商品，<a th:href="@{/index/init.do}" href="/index/init.do">去逛逛吧</a> </p></div>
+        </div>
+
+        <div data-cart="1" class="cart clearfix" th:if="${session.cart != null}">
+                <div class="clear">
+                    <a class="f_r" href="javascript:void(0)" onclick="clearCart()">清空此购物车</a>
+                </div>
+                <div class="show-product">
+                    <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th width="8%">图片</th>
+                                <th width="50%">商品名称</th>
+                                <th width="10%">价格</th>
+                                <th width="8%">数量</th>
+                                <th width="16%">小计</th>
+                                <th width="8%">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="cartItem:${session.cart.cartItems}">
+                                    <td class="img"><img th:src="@{${cartItem.product.imgs[0].url}}" src="${cartItem.product.imgs[0].url}"></td>
+                                    <td class="title"><a th:href="@{'/product/findProductById.do?pid='+${cartItem.product.id}}" th:text="${cartItem.product.name}" href="/user/product/findById.do?productId=${cartItem.product.id}" target="_self"></a></td>
+                                    <td class="money">&yen;<span th:text="${cartItem.product.price}"></span></td>
+                                    <td class="num" th:text="${cartItem.num}"></td>
+                                    <td class="subtotal">&yen;<span th:text="${cartItem.sub}"></span> </td>
+                                    <td class="del"><a class="btn btn-danger" th:attr="data-pid=${cartItem.product.id}" onclick="deleteItem()">删除</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+                <div class="f_r">
+                    <p class="total">总金额：&yen;<i th:text="${session.cart.total}"></i></p>
+                    <button type="submit" class="btn btn-danger btn-lg f_r">提交</button>
+                </div>
+                <div class="empty-div"></div>
+            </div>
+    </div>
+</div>
+<!-- 订单主体结束 -->
+<!-- 底部 -->
+<div th:replace="/user/footer::footer"></div>
+<!-- 底部 结束 -->
+<script th:src="@{/webjars/jquery/3.4.1/jquery.js}" src="/plugins/jQuery/jquery-1.12.4-min.js"></script>
+<script th:src="@{/js/common.js}" src="/js/common.js"></script>
+<script>
+    //删除某项商品
+    function deleteItem(){
+        var pid = $(".del a").attr("data-pid");
+        console.log(pid);
+        if(confirm("是否要删除该项")){
+            location.href="[[@{/}]]user/permission/cart/deleteCart.do?productId="+pid;
+        }
+    }
+    //清空购物车
+    function clearCart() {
+        if(confirm("是否要清空购物车")){
+            location.href="[[@{/}]]user/permission/cart/clearCart.do";
+        }
+    }
+    // 提交
+    $("button[type='submit']").click(function () {
+        location.href="[[@{/}]]user/permission/orderinfo";
+    });
+</script>
+</body>
+</html>

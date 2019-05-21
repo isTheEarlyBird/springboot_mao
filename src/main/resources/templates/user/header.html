@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <header class="navbar navbar-static-top bs-docs-nav" id="top" th:fragment="header">
+    <div class="container">
+        <!-- nav导航栏 -->
+        <nav id="bs-navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="navbar-text">
+                    喵，欢迎来天猫
+                </li>
+                <li th:if="${session.user == null}">
+                    <a th:href="@{/user/toLogin}" href="/user/login.html">请登录</a>
+                </li>
+                <li th:if="${session.user == null}">
+                    <a th:href="@{/user/toRegister}" href="/user/register.html">免费注册</a>
+                </li>
+
+                <li th:if="${session.user != null}">
+                    <a><span th:text="${session.user.name}"></span>欢迎回来</a>
+                </li>
+                <li th:if="${session.user != null}">
+                    <a th:href="@{/user/logout.do}" href="/user/logout.do">退出登录</a>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#">我的淘宝</a>
+                </li>
+                <li>
+                    <a th:href="@{/user/permission/cart}" href="/pages/user/permission/cart.jsp">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>购物车
+                        <span th:text="${session.cart == null ? 0 : #lists.size(session.cart.cartItems)}">0</span>件
+                    </a>
+                </li>
+                <li class="phone-li">
+                    <a id="phone" href="#">手机版</a>
+                    <div class="phone-img" style="display: none;">
+                        <img th:src="@{/images/mao-phone.PNG}" src="/images/mao-phone.PNG">
+                    </div>
+                </li>
+                <li><a href="http://www.taobao.com" target="_blank">淘宝网</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">网站导航 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        服务指南Help
+                        <li><a href="#">帮助中心</a></li>
+                        <li><a href="#">品质保障</a></li>
+                        <li><a href="#">特色服务</a></li>
+                        <li><a href="#">7天退换货</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a th:href="@{/user/permission/order/findOrderList.do}" href="/user/permission/order/findOrderList.do">我的订单</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- nav导航栏结束 -->
+
+        <!-- logo/搜索 -->
+        <div class="header-top clearfix">
+            <div class="logo">
+                <h1>
+                    <a th:href="@{/index/init.do}" href="/index/init.do"> <img th:src="@{/images/logo.gif}" src="/images/logo.gif">
+                    </a>
+                </h1>
+            </div>
+            <div class="search clearfix">
+                <input type="search" placeholder="搜索 天猫 商品/品牌/店铺">
+                <button type="submit">搜索</button>
+                <div class="hotWord">
+                    <ul>
+                        <li><a href="javascript:;">针织衫</a></li>
+                        <li><a class="red" href="javascript:;">连衣裙</a></li>
+                        <li><a href="javascript:;">四件套</a></li>
+                        <li><a class="red" href="javascript:;">摄像头</a></li>
+                        <li><a href="javascript:;">客厅灯</a></li>
+                        <li><a href="javascript:;">口红</a></li>
+                        <li><a class="red" href="javascript:;">手机</a></li>
+                        <li><a href="javascript:;">运动鞋</a></li>
+                        <li><a class="red" href="javascript:;">牛奶</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- logo/搜索 结束 -->
+
+    </div>
+</header>
+</body>
