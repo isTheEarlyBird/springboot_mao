@@ -12,6 +12,7 @@
           
 所用技术：
     tomcat，springboot（thymeleaf），ssm(mysql，druid），shiro，jquery，bootstrap，adminLTE
+    
 所用开发软件：idea
 
 缺点：
